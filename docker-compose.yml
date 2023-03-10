@@ -1,0 +1,37 @@
+version: "3"
+services:
+    # バックエンド
+    server:
+        container_name: dockerlec_server
+        build:
+            context: ./server
+            dockerfile: Dockerfile
+            target: dev
+        tty: true
+        stdin_open: true
+        volumes:
+            - type: bind
+              source: ./server
+              target: /server
+        ports:
+            - 8000:8000
+    # データベース
+    database:
+        image: mysql:8.0
+        container_name: dockerlec_database
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: dockerlec_database
+            MYSQL_USER: light
+            MYSQL_PASSWORD: light
+            TZ: 'Asia/Tokyo'
+        command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+        tty: true
+        stdin_open: true
+        volumes:
+            - ./database/data:/var/lib/mysql
+            - ./database/my.cnf:/etc/mysql/conf.d/my.cnf
+            - ./database/sqls:/docker-entrypoint-initdb.d
+        ports:
+            - 3306:3306
+    
