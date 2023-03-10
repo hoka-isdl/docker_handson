@@ -18,7 +18,7 @@ services:
     # データベース
     database:
         image: mysql:8.0
-        container_name: dockerlec_database
+        container_name: mysql
         environment:
             MYSQL_ROOT_PASSWORD: root
             MYSQL_DATABASE: dockerlec_database

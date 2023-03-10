@@ -3,17 +3,16 @@ package repository
 import (
 	"database/sql"
 	"log"
+	"fmt"
 
 	_ "github.com/go-sql-driver/mysql"
-
-	
 )
 
 var db *sql.DB
 
 func Opendb() {
 
-	db_name, err := sql.Open("mysql", "root:root@tcp(127.0.0.1:3306)/dockerlec_database?")
+	db_name, err := sql.Open("mysql", "root:root@tcp(mysql:3306)/dockerlec_database?")
 
 	if err != nil {
 		panic(err.Error())
@@ -23,6 +22,7 @@ func Opendb() {
 }
 
 func Register(username string,password string){
+	fmt.Print(1)
 	Opendb()
 	defer db.Close()
 
