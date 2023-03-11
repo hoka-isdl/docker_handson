@@ -3,7 +3,6 @@ package controller
 import (
 	//HTTPクライアントとサーバーの実装
 	"net/http"
-	"fmt"
 
 	"github.com/gin-gonic/gin"
 	"github.com/hoka-isdl/docker_handson/server/repository"
@@ -20,8 +19,6 @@ func Router(router *gin.Engine) {
 	router.POST("/register", func(c *gin.Context) {
 		username := c.PostForm("username")
 		password := c.PostForm("password")
-		
-		fmt.Print(username,password)
 
 		repository.Register(username,password)
 		

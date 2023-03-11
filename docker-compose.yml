@@ -3,10 +3,7 @@ services:
     # バックエンド
     server:
         container_name: dockerlec_server
-        build:
-            context: ./server
-            dockerfile: Dockerfile
-            target: dev
+        build: ./server
         tty: true
         stdin_open: true
         volumes:
@@ -14,14 +11,14 @@ services:
               source: ./server
               target: /server
         ports:
-            - 8000:8000
+            - 80:80
     # データベース
     database:
         image: mysql:8.0
         container_name: mysql
         environment:
             MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: dockerlec_database
+            MYSQL_DATABASE: db
             MYSQL_USER: light
             MYSQL_PASSWORD: light
             TZ: 'Asia/Tokyo'

@@ -1,9 +1,6 @@
-FROM golang:1.18.3-alpine AS dev
-#
+#ベースイメージの取得
+FROM golang:1.18.3-alpine
+#パッケージの更新
 RUN apk update
-#
+#作業ディレクトリの指定
 WORKDIR /server
-#
-RUN go install github.com/cosmtrek/air@latest
-#
-CMD ["air"]

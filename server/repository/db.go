@@ -3,7 +3,6 @@ package repository
 import (
 	"database/sql"
 	"log"
-	"fmt"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -22,7 +21,7 @@ func Opendb() {
 }
 
 func Register(username string,password string){
-	fmt.Print(1)
+	
 	Opendb()
 	defer db.Close()
 

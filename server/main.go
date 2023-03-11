@@ -15,11 +15,11 @@ func main() {
 	//html/css/jsファイルのディレクトリをロード
 	router.LoadHTMLGlob("templates/*")
 	router.Static("/assets", "./assets")
-	
+
 	// //routerを渡す
 	controller.Router(router)
 	
 
 	//ポートを指定して実行
-	router.Run(":8000")
+	router.Run(":80")
 }
