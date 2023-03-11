@@ -27,6 +27,7 @@ func Router(router *gin.Engine) {
 		
 		c.HTML(http.StatusOK, "index.html", gin.H{
 			"judge": true,
+			"username": username,
 		})
 	})
 
