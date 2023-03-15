@@ -3,6 +3,7 @@ package repository
 import (
 	"database/sql"
 	"log"
+	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -10,8 +11,11 @@ import (
 var db *sql.DB
 
 func Opendb() {
-
-	db_name, err := sql.Open("mysql", "root:root@tcp(mysql:3306)/db?")
+	mysql_user := os.Getenv("MYSQL_USER")
+	mysql_password := os.Getenv("MYSQL_PASSWORD")
+	mysql_database := os.Getenv("MYSQL_DATABASE")
+	container_database_ports := os.Getenv("CONTAINER_DATABASE_PORTS")
+	db_name, err := sql.Open("mysql", mysql_user +":"+ mysql_password +"@tcp(mysql:"+ container_database_ports +")/"+ mysql_database +"?")
 
 	if err != nil {
 		panic(err.Error())
