@@ -1,10 +1,10 @@
 package main
 
 import (
-	//Ginの実装
+	"os"
 	"github.com/gin-gonic/gin"
-
 	"github.com/hoka-isdl/docker_handson/server/controller"
+	
 )
 
 func main() {
@@ -18,8 +18,8 @@ func main() {
 
 	// //routerを渡す
 	controller.Router(router)
-	
 
+	port := os.Getenv("CONTAINER_SERVER_PORTS")
 	//ポートを指定して実行
-	router.Run(":80")
+	router.Run(":"+ port)
 }
