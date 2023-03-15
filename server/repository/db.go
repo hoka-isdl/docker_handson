@@ -11,7 +11,7 @@ var db *sql.DB
 
 func Opendb() {
 
-	db_name, err := sql.Open("mysql", "root:root@tcp(mysql:3306)/dockerlec_database?")
+	db_name, err := sql.Open("mysql", "root:root@tcp(mysql:3306)/db?")
 
 	if err != nil {
 		panic(err.Error())

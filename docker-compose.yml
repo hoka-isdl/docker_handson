@@ -11,7 +11,7 @@ services:
               source: ./server
               target: /server
         ports:
-            - 80:80
+            - ${HOST_SERVER_PORTS}:${CONTAINER_SERVER_PORTS}
     # データベース
     database:
         image: mysql:8.0
@@ -30,5 +30,5 @@ services:
             - ./database/my.cnf:/etc/mysql/conf.d/my.cnf
             - ./database/sqls:/docker-entrypoint-initdb.d
         ports:
-            - 3306:3306
+            - ${HOST_DATABASE_PORTS}:${CONTAINER_DATABASE_PORTS}
     

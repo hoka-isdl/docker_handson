@@ -4,3 +4,5 @@ FROM golang:1.18.3-alpine
 RUN apk update
 #作業ディレクトリの指定
 WORKDIR /server
+
+CMD ["go", "run", "main.go"]
