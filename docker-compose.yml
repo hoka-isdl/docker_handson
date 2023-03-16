@@ -3,41 +3,29 @@ services:
     # バックエンド
     server:
         container_name: dockerlec_server
-        #Dockerfilleのファイルパス指定
         build: ./server
-        #.envファイルの読み込み
         env_file:
             - ./.env
-        #コンテナを起動し続ける設定
         tty: true 
-        #標準入出力とエラー出力をコンテナに結びつける
         stdin_open: true
-        #OSのディレクトリをコンテナの中のディレクトリにマウントする
         volumes:
             - type: bind
-              #マウント元
               source: ./server
-              #マウント先
               target: /server
-        #ポート番号の指定（ホスト：コンテナ）
         ports:
             - ${HOST_SERVER_PORTS}:${CONTAINER_SERVER_PORTS}
-        #依存関係を定義．ここではdatabaseコンテナを起動してからserverコンテナを起動する．
         depends_on:
             - database
     # データベース
     database:
-        #ベースイメージの取得
         image: mysql:8.0
         container_name: mysql
-        #環境変数の設定
         environment:
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
             MYSQL_DATABASE: ${MYSQL_DATABASE}
             MYSQL_USER: ${MYSQL_USER}
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
             TZ: 'Asia/Tokyo'
-        #デフォルトで実行されるコマンドの設定
         command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
         tty: true
         stdin_open: true
