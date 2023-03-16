@@ -3,19 +3,19 @@ services:
     # バックエンド
     server:
         container_name: dockerlec_server
-        build: ./server
+        build: ******
         env_file:
             - ./.env
         tty: true 
         stdin_open: true
         volumes:
             - type: bind
-              source: ./server
-              target: /server
+              source: ******
+              target: ******
         ports:
-            - ${HOST_SERVER_PORTS}:${CONTAINER_SERVER_PORTS}
+            - ******
         depends_on:
-            - database
+            - ******
     # データベース
     database:
         image: mysql:8.0
