@@ -3,19 +3,19 @@ services:
     # バックエンド
     server:
         container_name: dockerlec_server
-        build: ./server
+        build: ******
         env_file:
             - ./.env
         tty: true 
         stdin_open: true
         volumes:
             - type: bind
-              source: ./server
-              target: /server
+              source: ******
+              target: ******
         ports:
-            - ${HOST_SERVER_PORTS}:${CONTAINER_SERVER_PORTS}
+            - ******
         depends_on:
-            - database
+            - ******
 
     # データベース
     database:
@@ -24,10 +24,10 @@ services:
         env_file:
             - ./.env
         environment:
-            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-            MYSQL_DATABASE: ${MYSQL_DATABASE}
-            MYSQL_USER: ${MYSQL_USER}
-            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_ROOT_PASSWORD: ******
+            MYSQL_DATABASE: ******
+            MYSQL_USER: ******
+            MYSQL_PASSWORD: ******
             TZ: 'Asia/Tokyo'
         command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
         tty: true
@@ -37,5 +37,5 @@ services:
             - ./database/my.cnf:/etc/mysql/conf.d/my.cnf
             - ./database/sqls:/docker-entrypoint-initdb.d
         ports:
-            - ${HOST_DATABASE_PORTS}:${CONTAINER_DATABASE_PORTS}
+            - ******
     
