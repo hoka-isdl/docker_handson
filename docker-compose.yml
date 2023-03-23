@@ -16,10 +16,13 @@ services:
             - ${HOST_SERVER_PORTS}:${CONTAINER_SERVER_PORTS}
         depends_on:
             - database
+
     # データベース
     database:
         image: mysql:8.0
         container_name: mysql
+        env_file:
+            - ./.env
         environment:
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
             MYSQL_DATABASE: ${MYSQL_DATABASE}
